@@ -2,12 +2,13 @@ Summary:	LDAP Authentication with PHP for Active Directory
 Name:		php-adldap
 Version:	3.3.1
 Release:	1
-License:	LGPL
+License:	LGPL v2.1
 Group:		Development/Languages/PHP
 Source0:	http://dl.sourceforge.net/adldap/adLDAP_%{version}.zip
 # Source0-md5:	31d0153a734c5470bcf08ac81daf62c6
 URL:		http://adldap.sourceforge.net/
-BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	rpmbuild(macros) >= 1.461
+BuildRequires:	sed >= 4.0
 Requires:	php-bcmath
 Requires:	php-common >= 4:5.0
 Requires:	php-ldap
@@ -39,11 +40,11 @@ there's not really going to be much to query.
 %prep
 %setup -q -n adLDAP
 mv LICEN{C,S}E.txt
+%{__sed} -i -e 's,\r$,,' *.php *.txt examples/*.php examples/*.htm
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{php_data_dir}
-
 cp -a adLDAP.php $RPM_BUILD_ROOT%{php_data_dir}
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
