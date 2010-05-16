@@ -9,6 +9,7 @@ Source0:	http://dl.sourceforge.net/adldap/adLDAP_%{version}.zip
 URL:		http://adldap.sourceforge.net/
 BuildRequires:	rpmbuild(macros) >= 1.461
 BuildRequires:	sed >= 4.0
+BuildRequires:	unzip
 Requires:	php-bcmath
 Requires:	php-common >= 4:5.0
 Requires:	php-ldap
