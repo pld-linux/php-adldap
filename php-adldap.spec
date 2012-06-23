@@ -1,17 +1,21 @@
+%define		php_min_version 5.0.0
+%include	/usr/lib/rpm/macros.php
 Summary:	LDAP Authentication with PHP for Active Directory
 Name:		php-adldap
-Version:	3.3.1
+Version:	3.3.2
 Release:	1
 License:	LGPL v2.1
 Group:		Development/Languages/PHP
-Source0:	http://dl.sourceforge.net/adldap/adLDAP_%{version}.zip
-# Source0-md5:	31d0153a734c5470bcf08ac81daf62c6
+Source0:	http://downloads.sourceforge.net/adldap/adLDAP_%{version}.zip
+# Source0-md5:	8b1b0d13d42623d8955e54ef7401dc11
 URL:		http://adldap.sourceforge.net/
-BuildRequires:	rpmbuild(macros) >= 1.461
+BuildRequires:	rpm-php-pearprov >= 4.4.2-11
+BuildRequires:	rpmbuild(macros) >= 1.553
 BuildRequires:	sed >= 4.0
 BuildRequires:	unzip
 Requires:	php-bcmath
-Requires:	php-common >= 4:5.0
+Requires:	php-common >= 4:%{php_min_version}
+Requires:	php-date
 Requires:	php-ldap
 Requires:	php-pcre
 Requires:	php-xml
@@ -41,12 +45,12 @@ there's not really going to be much to query.
 %prep
 %setup -q -n adLDAP
 mv LICEN{C,S}E.txt
-%{__sed} -i -e 's,\r$,,' *.php *.txt examples/*.php examples/*.htm
+%undos *.php *.txt examples/*.php examples/*.htm
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{php_data_dir}
-cp -a adLDAP.php $RPM_BUILD_ROOT%{php_data_dir}
+cp -p adLDAP.php $RPM_BUILD_ROOT%{php_data_dir}
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
