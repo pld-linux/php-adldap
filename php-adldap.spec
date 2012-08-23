@@ -3,7 +3,7 @@
 Summary:	LDAP Authentication with PHP for Active Directory
 Name:		php-adldap
 Version:	3.3.2
-Release:	2
+Release:	3
 License:	LGPL v2.1
 Group:		Development/Languages/PHP
 Source0:	http://downloads.sourceforge.net/adldap/adLDAP_%{version}.zip
@@ -14,10 +14,10 @@ BuildRequires:	rpmbuild(macros) >= 1.553
 BuildRequires:	sed >= 4.0
 BuildRequires:	unzip
 Requires:	php(bcmath)
+Requires:	php(core) >= %{php_min_version}
 Requires:	php(ldap)
 Requires:	php(pcre)
 Requires:	php(xml)
-Requires:	php-common >= 4:%{php_min_version}
 Requires:	php-date
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
