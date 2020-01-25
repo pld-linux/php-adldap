@@ -1,5 +1,4 @@
 %define		php_min_version 5.0.0
-%include	/usr/lib/rpm/macros.php
 Summary:	LDAP Authentication with PHP for Active Directory
 Name:		php-adldap
 Version:	4.0.4
